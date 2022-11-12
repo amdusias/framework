@@ -14,12 +14,12 @@ interface InjectorInterface
      * @param $component
      * @return mixed
      */
-    public function addRequirement($name, $component): mixed;
+    public function addRequirement($name, $component);
 
     /**
      * Строитель зависимости
      *
      * @return mixed
      */
-    public function build(): mixed;
+    public function build();
 }
