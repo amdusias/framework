@@ -65,6 +65,22 @@ class Kernel implements KernelInterface
     }
 
     /**
+     * Загрузка зависимостей в кэш
+     *
+     * @return void
+     */
+    final public function loadInjectorsFromCache(): void
+    {
+        // test
+        $injectors = ['name' => 'value_object'];
+
+        $baseInjector = new Injector;
+        foreach ($injectors as $name => $injector) {
+            $baseInjector->addRequirement($name, $injector);
+        }
+    }
+
+    /**
      * Возвращаем путь к корню приложения
      *
      * @return mixed
