@@ -12,17 +12,19 @@ final class Framework extends Kernel
 {
     /** @var string версия приложения */
     public static string $version = '1.0';
-    /** @var Framework $app синглтон приложения */
+    /** @var Framework $app объект приложения */
     protected static $app;
-    /** @var array настройки приложения */
-    public array $config;
+    /** @var Kernel объект ядра приложения */
+    private Kernel $kernel;
 
     /**
      * Конструктор приложения
      */
-    protected function __construct()
+    public function __construct(private array $config)
     {
-        $this->config = Config::getInstance()->loadConfig($this->getConfigDir());
+        parent::__construct($this->config);
+
+        $this->kernel = new Kernel($this->config);
     }
 
     private function __clone() {}
@@ -32,12 +34,13 @@ final class Framework extends Kernel
     /**
      * Возвращает экземпляр одиночки класса приложения
      *
+     * @param $config
      * @return Framework
      */
-    public static function getInstance(): Framework
+    public static function getInstance($config): Framework
     {
         if (self::$app === null) {
-            self::$app = new Framework();
+            self::$app = new Framework($config);
         }
 
         return self::$app;

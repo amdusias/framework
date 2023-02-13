@@ -10,9 +10,9 @@ interface IKernel
     /**
      * Возвращает путь к папке приложения
      *
-     * @return mixed
+     * @return string
      */
-    public function getAppDir(): mixed;
+    public function getAppDir(): string;
 
     /**
      * Возвращает путь к папке настроек приложения
@@ -20,4 +20,11 @@ interface IKernel
      * @return string
      */
     public function getConfigDir(): string;
+
+    /**
+     * Возвращает путь к клиентской папке
+     *
+     * @return string
+     */
+    public function getPublicDir(): string;
 }

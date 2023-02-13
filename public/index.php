@@ -6,4 +6,6 @@ use Framework\Framework;
 
 include __DIR__ . '/../app/__autoload.php';
 
-Framework::getInstance()->run();
+$config = require_once __DIR__ . '/../app/configs/index.php';
+
+Framework::getInstance($config)->run();
