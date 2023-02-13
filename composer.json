@@ -1,0 +1,16 @@
+{
+  "name": "amdusias/framework",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Amdusias",
+      "email": "artgomartgom@yandex.ru",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^8.0",
+    "zendframework/zend-diactoros": "^1.3"
+  }
+}
