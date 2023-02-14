@@ -3,7 +3,8 @@
 namespace Framework;
 
 use App\Kernel;
-use Framework\Base\Config;
+use Framework\Mvc\MvcApplication;
+use Psr\Http\Message\ServerRequestInterface;
 
 /**
  * Class Framework
@@ -27,10 +28,6 @@ final class Framework extends Kernel
         $this->kernel = new Kernel($this->config);
     }
 
-    private function __clone() {}
-
-    public function __wakeup() {}
-
     /**
      * Возвращает экземпляр одиночки класса приложения
      *
@@ -49,8 +46,9 @@ final class Framework extends Kernel
     /**
      * Запуск фреймворка
      */
-    public function run()
+    public function run(ServerRequestInterface $server)
     {
-
+        $app = new MvcApplication($this->kernel);
+        $app->run($server);
     }
 }

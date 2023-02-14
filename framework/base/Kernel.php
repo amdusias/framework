@@ -3,6 +3,7 @@
 namespace Framework\Base;
 
 use Framework\Base\Interfaces\IKernel;
+use Psr\Http\Message\ServerRequestInterface;
 
 /**
  * Class Kernel
@@ -22,6 +23,8 @@ class Kernel implements IKernel
     private bool $debug = false;
     /** @var float $startTime время старта приложения */
     private float $startTime;
+    /** @var bool $loaded флаг загрузки приложения */
+    private bool $loaded;
 
     /**
      * Конструктор ядра
@@ -31,8 +34,9 @@ class Kernel implements IKernel
     public function __construct(array $config)
     {
         $this->publicDir = getenv('DOCUMENT_ROOT');
-        $this->debug = (bool) $config['debug'];
+        $this->debug = filter_var($config['debug'], FILTER_VALIDATE_BOOLEAN);
         $this->environment = $config['env'];
+        $this->loaded = false;
 
         ini_set('display_errors', (integer) $this->debug);
         ini_set('log_errors', (integer) $this->debug);
@@ -41,6 +45,31 @@ class Kernel implements IKernel
             ini_set('error_reporting', -1);
             $this->startTime = microtime(true);
         }
+    }
+
+    /**
+     * Клонируем ядро
+     *
+     * @return void
+     */
+    public function __clone()
+    {
+        if ($this->debug) {
+            $this->startTime = microtime(true);
+        }
+
+        $this->loaded = false;
+    }
+
+    /**
+     * Запуск ядра
+     *
+     * @param ServerRequestInterface $request
+     * @return void
+     */
+    public function initialize(ServerRequestInterface $request)
+    {
+
     }
 
     /**
@@ -75,5 +104,15 @@ class Kernel implements IKernel
     public function getPublicDir(): string
     {
         return $this->publicDir;
+    }
+
+    /**
+     * Возвращает статус дебаг режима
+     *
+     * @return bool
+     */
+    public function isDebug(): bool
+    {
+        return $this->debug;
     }
 }

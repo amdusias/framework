@@ -27,4 +27,11 @@ interface IKernel
      * @return string
      */
     public function getPublicDir(): string;
+
+    /**
+     * Возвращает статус дебаг режима
+     *
+     * @return bool
+     */
+    public function isDebug(): bool;
 }
