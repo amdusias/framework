@@ -2,6 +2,7 @@
 
 namespace Framework\Base;
 
+use Exception;
 use Framework\Base\Interfaces\IKernel;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -62,6 +63,21 @@ class Kernel implements IKernel
     }
 
     /**
+     * Загрузка зависимости (тест)
+     *
+     * @return void
+     */
+    final public function loadInjectorsFromCache(): void
+    {
+        $injectors = ['name' => 'value_object'];
+
+        $baseInjector = new Injector;
+        foreach ($injectors as $name => $injector) {
+            $baseInjector->addRequirement($name, $injector);
+        }
+    }
+
+    /**
      * Запуск ядра
      *
      * @param ServerRequestInterface $request
@@ -69,7 +85,20 @@ class Kernel implements IKernel
      */
     public function initialize(ServerRequestInterface $request)
     {
+        $inject = new Injector($this->getConfigFile());
+        $inject->addRequirement('kernel', $this);
+        $inject->addRequirement('request', $request);
 
+        $dispatcherInjector = new DispatcherInjector;
+
+        try {
+            $dispatcher = $dispatcherInjector->build();
+        } catch (Exception $e) {
+            $dispatcher = new Dispatcher;
+            $dispatcherInjector->addRequirement('dispatcher', $dispatcher);
+        }
+
+        $dispatcher->signal('kernel.boot', ['injector' => $inject]);
     }
 
     /**
@@ -87,11 +116,11 @@ class Kernel implements IKernel
     }
 
     /**
-     * Возвращает путь к папке настроек приложения
+     * Возвращает путь к файлу настроек приложения
      *
      * @return string
      */
-    public function getConfigDir(): string
+    public function getConfigFile(): string
     {
         return $this->getAppDir() . '/configs/index.php';
     }

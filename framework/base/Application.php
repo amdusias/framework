@@ -23,6 +23,8 @@ abstract class Application implements IApplication
     final public function __construct(IKernel $kernel)
     {
         $this->kernel = $kernel;
+
+        $this->kernel->loadInjectorsFromCache();
     }
 
     /**
@@ -40,6 +42,8 @@ abstract class Application implements IApplication
             return $this->doRun();
         } catch (\Exception $e) {
             if ($this->kernel->isDebug()) {
+                (new DispatcherInjector)->build()->signal('kernel.exception', ['exception' => $e]);
+
                 throw $e;
             }
         }
@@ -50,7 +54,12 @@ abstract class Application implements IApplication
      */
     private function doRun()
     {
-        echo 'Запуск приложения';
+        $dispatcher = (new DispatcherInjector)->build();
+
+        // показываем событие request
+        if (($response = $dispatcher->signal('kernel.request')) instanceof ResponseInterface) {
+            return $response;
+        }
     }
 
     /**

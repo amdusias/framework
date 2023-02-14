@@ -15,11 +15,11 @@ interface IKernel
     public function getAppDir(): string;
 
     /**
-     * Возвращает путь к папке настроек приложения
+     * Возвращает путь к файлу настроек приложения
      *
      * @return string
      */
-    public function getConfigDir(): string;
+    public function getConfigFile(): string;
 
     /**
      * Возвращает путь к клиентской папке
