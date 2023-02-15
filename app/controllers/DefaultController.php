@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Components\Controller;
+use App\Components\View;
 
 /**
  * Class DefaultController
@@ -12,8 +13,8 @@ class DefaultController extends Controller
     /**
      * Главная страница
      */
-    public function actionIndex()
+    public function actionIndex(): View
     {
-        var_dump(123);
+        return new View();
     }
 }
