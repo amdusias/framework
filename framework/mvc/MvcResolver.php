@@ -39,7 +39,7 @@ class MvcResolver implements IResolver
 
         $cls = $this->getCalculatePath();
 
-        if (!class_exists($cls) || !is_subclass_of($cls, '\Framework\Mvc\Controllers\Interfaces\IController')) {
+        if (!class_exists($cls) || !is_subclass_of($cls, '\Framework\Mvc\Controllers\IController')) {
             throw new Exception('Контроллер '.$cls.' не найден или не валидный');
         }
 
@@ -74,7 +74,6 @@ class MvcResolver implements IResolver
                 $query[$val[0]] = $val[1];
             }
 
-            // replace request
             $request = (new RequestInjector)->build();
             (new RequestInjector)->addRequirement('request', $request->withQueryParams(
                 array_replace_recursive($request->getQueryParams(), $query)
