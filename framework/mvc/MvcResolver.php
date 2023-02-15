@@ -39,7 +39,7 @@ class MvcResolver implements IResolver
 
         $cls = $this->getCalculatePath();
 
-        if (!class_exists($cls) || !is_subclass_of($cls, '\Framework\Mvc\Controllers\IController')) {
+        if (!class_exists($cls) || !is_subclass_of($cls, '\Framework\Mvc\Interfaces\IController')) {
             throw new Exception('Контроллер '.$cls.' не найден или не валидный');
         }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Mvc\Controllers;
+namespace Framework\Mvc\Interfaces;
 
 /**
  * Class IController

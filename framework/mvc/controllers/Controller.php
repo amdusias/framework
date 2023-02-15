@@ -4,6 +4,7 @@ namespace Framework\Mvc\Controllers;
 
 use Exception;
 use Framework\Mvc\Action;
+use Framework\Mvc\Interfaces\IController;
 use Framework\Web\ResponseInjector;
 use Psr\Http\Message\ResponseInterface;
 
@@ -29,6 +30,7 @@ abstract class Controller implements IController
      * Возвращает экшен
      *
      * @param $name
+     * @return false|Action|string
      */
     public function getActionClassByName($name)
     {
