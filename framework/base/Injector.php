@@ -65,7 +65,7 @@ class Injector implements IInjector
     }
 
     /**
-     * Возвращаем зависимость
+     * Возвращает зависимость
      *
      * @param string $name
      * @return boolean|mixed
@@ -89,7 +89,7 @@ class Injector implements IInjector
     }
 
     /**
-     * Загрузка зависимости
+     * Загружает зависимость
      *
      * @param $name
      * @throws \ReflectionException

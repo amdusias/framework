@@ -49,7 +49,7 @@ class Kernel implements IKernel
     }
 
     /**
-     * Клонируем ядро
+     * Клонирует ядро
      *
      * @return void
      */
@@ -63,7 +63,7 @@ class Kernel implements IKernel
     }
 
     /**
-     * Загрузка зависимости (тест)
+     * Загружает зависимости (тест)
      *
      * @return void
      */
@@ -78,7 +78,7 @@ class Kernel implements IKernel
     }
 
     /**
-     * Запуск ядра
+     * Запускает ядро
      *
      * @param ServerRequestInterface $request
      * @return void

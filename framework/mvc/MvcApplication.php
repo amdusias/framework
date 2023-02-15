@@ -3,7 +3,7 @@
 namespace Framework\Mvc;
 
 use Framework\Base\Application;
-use Framework\Web\ResponseInjector;
+use Framework\Mvc\Interfaces\IResolver;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -12,7 +12,17 @@ use Psr\Http\Message\ResponseInterface;
 class MvcApplication extends Application
 {
     /**
-     * Отправляем запрос
+     * Возвращает резольвер
+     *
+     * @return IResolver
+     */
+    public function getResolver(): IResolver
+    {
+        return new MvcResolver;
+    }
+
+    /**
+     * Отправляет запрос клиенту
      *
      * @param ResponseInterface $response
      */

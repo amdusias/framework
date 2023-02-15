@@ -44,7 +44,7 @@ final class Framework extends Kernel
     }
 
     /**
-     * Запуск фреймворка
+     * Запускает фреймворк
      */
     public function run(ServerRequestInterface $server)
     {

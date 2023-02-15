@@ -14,7 +14,7 @@ class Dispatcher implements IDispatcher
     protected $listeners = [];
 
     /**
-     * Добавляем событие
+     * Добавляет событие
      *
      * @param $listener
      * @param $event
@@ -41,7 +41,7 @@ class Dispatcher implements IDispatcher
     }
 
     /**
-     * Отправляем сигнал для старта события
+     * Отправляет сигнал для старта события
      *
      * @param $listener
      * @param array $params

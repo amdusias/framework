@@ -28,7 +28,7 @@ abstract class Application implements IApplication
     }
 
     /**
-     * Запускаем приложение
+     * Запускает приложение
      *
      * @param ServerRequestInterface $server
      * @return void|null
@@ -52,14 +52,29 @@ abstract class Application implements IApplication
     }
 
     /**
-     * Реальный запуск приложения
+     * Запускает реально приложение
      */
     private function doRun()
     {
         $dispatcher = (new DispatcherInjector)->build();
 
-        // показываем событие request
+        // возвращаем событие request
         if (($response = $dispatcher->signal('kernel.request')) instanceof ResponseInterface) {
+            return $response;
+        }
+
+        $resolver = $this->getResolver();
+
+        // возвращаем событие route
+        if (($response = $dispatcher->signal('kernel.route', ['resolver' => $resolver])) instanceof ResponseInterface) {
+            return $response;
+        }
+
+        $controller = $resolver->getApp();
+        $action = $resolver->getAction();
+
+        // возвращаем событие controller
+        if (($response = $dispatcher->signal('kernel.controller', ['controller' => $controller, 'action' => $action])) instanceof ResponseInterface) {
             return $response;
         }
     }

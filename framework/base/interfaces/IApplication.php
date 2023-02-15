@@ -2,6 +2,7 @@
 
 namespace Framework\Base\Interfaces;
 
+use Framework\Mvc\Interfaces\IResolver;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -16,4 +17,11 @@ interface IApplication
      * @return mixed
      */
     public function send(ResponseInterface $response);
+
+    /**
+     * Возвращает резольвер
+     *
+     * @return IResolver
+     */
+    public function getResolver(): IResolver;
 }

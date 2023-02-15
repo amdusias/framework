@@ -4,6 +4,9 @@ namespace App;
 
 use Framework\Base\Kernel as KernelBase;
 
+/**
+ * Class Kernel
+ */
 class Kernel extends KernelBase
 {
     /**

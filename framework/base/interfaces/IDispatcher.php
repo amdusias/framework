@@ -8,7 +8,7 @@ namespace Framework\Base\Interfaces;
 interface IDispatcher
 {
     /**
-     * Добавляем событие
+     * Добавляет событие
      *
      * @param $listener
      * @param $event
@@ -18,7 +18,7 @@ interface IDispatcher
     public function addListener($listener, $event, $prior = null);
 
     /**
-     * Отправляем сигнал для старта события
+     * Отправляет сигнал для старта события
      *
      * @param $listener
      * @param array $params

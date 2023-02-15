@@ -11,7 +11,7 @@ class Autoload
     private static array $aliases = [];
 
     /**
-     * Создаёт новый алиас (псевдоним)
+     * Создает новый алиас (псевдоним)
      *
      * @param $alias
      * @param $realPath
