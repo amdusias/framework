@@ -46,6 +46,8 @@ abstract class Application implements IApplication
 
                 throw $e;
             }
+
+            return $this->doException($e);
         }
     }
 
@@ -61,6 +63,14 @@ abstract class Application implements IApplication
             return $response;
         }
     }
+
+    /**
+     * Запускает приложение при возникновении ошибки запуска
+     *
+     * @param \Exception $error
+     * @return mixed
+     */
+    abstract protected function doException(\Exception $error);
 
     /**
      * Отправляет запрос клиенту

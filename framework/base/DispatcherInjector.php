@@ -11,7 +11,7 @@ use Framework\Base\Interfaces\IDispatcher;
 class DispatcherInjector extends Injector
 {
     /**
-     * Строим зависимость
+     * Создает зависимость
      *
      * @return IDispatcher|null
      * @throws \ReflectionException

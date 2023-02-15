@@ -3,6 +3,7 @@
 namespace Framework\Mvc;
 
 use Framework\Base\Application;
+use Framework\Web\ResponseInjector;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -24,5 +25,17 @@ class MvcApplication extends Application
         }
 
         parent::send($response);
+    }
+
+    /**
+     * Запускает приложение при возникновении ошибки запуска
+     *
+     * @param \Exception $e
+     * @return void
+     * @throws \Exception
+     */
+    protected function doException(\Exception $e)
+    {
+        //
     }
 }
