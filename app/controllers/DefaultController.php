@@ -11,7 +11,7 @@ use App\Components\View;
 class DefaultController extends Controller
 {
     /**
-     * Главная страница
+     * Возвращает дефолтное представление
      */
     public function actionIndex(): View
     {
