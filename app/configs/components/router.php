@@ -4,7 +4,7 @@ return [
     'class' => '\Framework\Web\Router',
     'arguments' => [
         'routes' => [
-            '/' => '/default/home',
+            '/' => '/default/home'
         ]
     ]
 ];

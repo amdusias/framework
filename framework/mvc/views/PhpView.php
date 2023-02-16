@@ -17,7 +17,7 @@ class PhpView extends View
     public $view;
     /** @var string $path путь к представлению */
     public $path;
-    /** @var string $data возвращаем переданные данные */
+    /** @var string $data переданные данные */
     public $data = '';
 
     /**
@@ -29,7 +29,9 @@ class PhpView extends View
             return false;
         }
 
-        return $this->renderRawData($this->data ?: $this->renderFile($this->getViewFile($this->view)));
+        return $this->renderRawData(
+            $this->data ?: $this->renderFile($this->getViewFile($this->view), $this->params)
+        );
     }
 
 
@@ -46,7 +48,11 @@ class PhpView extends View
 
         if ($this->layout && (!$layoutPath = $this->getLayoutFile((new KernelInjector)->build()->getAppDir()))
         ) {
-            var_dump('не найден шаблон' . $this->layout);
+            var_dump('не найден шаблон ' . $this->layout);
+        }
+
+        if ($layoutPath) {
+            $data = $this->renderFile($layoutPath, ['content' => $data]);
         }
 
         return $data;
@@ -57,10 +63,38 @@ class PhpView extends View
      *
      * @param string $fileName
      * @param array $data
+     * @return false|string
      */
     protected function renderFile(string $fileName, array $data = [])
     {
+        extract($data, EXTR_PREFIX_SAME || EXTR_REFS, 'data');
+        ob_start();
 
+        include str_replace('\\', '/', $fileName);
+
+        return ob_get_clean();
+    }
+
+    /**
+     * Возвращает путь к шаблону
+     *
+     * @param $appDir
+     * @return false|string
+     */
+    protected function getLayoutFile($appDir)
+    {
+        $layout = $appDir;
+        $afterPath = 'views/layouts/' . $this->layout . '.php';
+
+        if (file_exists($layout . $afterPath)) {
+            return $layout . $afterPath;
+        }
+
+        if (file_exists($appDir . '/' . $afterPath)) {
+            return $appDir . '/' . $afterPath;
+        }
+
+        return false;
     }
 
     /**
@@ -84,13 +118,13 @@ class PhpView extends View
         $cl = substr($cl, strpos($cl, '/'));
 
         $className = str_replace('controller', '',
-            strtolower(basename(str_replace('\\', '/', '/'.$this->path))));
-        $path .= dirname($cl).'/views/'.$className.'/'.$view.'.php';
+            strtolower(basename(str_replace('\\', '/', '/' . $this->path))));
+        $path .= dirname($cl) . '/views/' . $className . '/' . $view . '.php';
 
         $path = str_replace('//', '/', $path);
 
         if (!file_exists($path)) {
-            throw new Exception('Предстваление `'.$path.'` не найдено');
+            throw new Exception('Предстваление `' . $path . '` не найдено');
         }
 
         return $path;

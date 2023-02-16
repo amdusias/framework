@@ -3,7 +3,10 @@
 namespace Framework\Mvc;
 
 use Framework\Base\Application;
+use Framework\Base\Injector;
 use Framework\Mvc\Interfaces\IResolver;
+use Framework\Web\RequestInjector;
+use Framework\Web\ResponseInjector;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -38,14 +41,44 @@ class MvcApplication extends Application
     }
 
     /**
-     * Запускает приложение при возникновении ошибки запуска
+     * Запускает приложение при возникновении ошибки
      *
      * @param \Exception $e
-     * @return void
+     * @return ResponseInterface|void
      * @throws \Exception
      */
     protected function doException(\Exception $e)
     {
-        //
+        $output = (new ResponseInjector)->build();
+
+        $errorController = (new Injector)->param('errorController');
+        $errorAction = (new Injector)->param('errorAction');
+
+        if (!$errorController || !$errorAction) {
+            $stream = $output->getBody();
+            $stream->write('Настройка `errorController` или `errorAction` не настроена');
+
+            return $output->withBody($stream);
+        }
+
+        $body = (new RequestInjector)->build()->getParsedBody();
+        $body['error'] = $e;
+
+        $request = (new RequestInjector)->build()->withParsedBody($body);
+        (new Injector)->addRequirement('request', $request);
+
+        $controller = $errorController;
+
+        $result = new $controller(false);
+        $result = $result->action($errorAction);
+
+        if ($result instanceof ResponseInterface) {
+            return $result;
+        }
+
+        $stream = $output->getBody();
+        $stream->write((string)$result);
+
+        return $output->withBody($stream);
     }
 }

@@ -13,7 +13,7 @@ abstract class Action
     public function __construct() {}
 
     /**
-     * Запуск экшена
+     * Запускает экшен
      *
      * @return mixed
      */

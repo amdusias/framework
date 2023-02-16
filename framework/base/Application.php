@@ -4,6 +4,7 @@ namespace Framework\Base;
 
 use Framework\Base\Interfaces\IApplication;
 use Framework\Base\Interfaces\IKernel;
+use Framework\Mvc\Interfaces\IController;
 use Framework\Web\ResponseInjector;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -71,6 +72,7 @@ abstract class Application implements IApplication
             return $response;
         }
 
+        /** @var IController $controller */
         $controller = $resolver->getApp();
         $action = $resolver->getAction();
 
@@ -84,7 +86,7 @@ abstract class Application implements IApplication
         if (!($response instanceof ResponseInterface)) {
             $responser = (new ResponseInjector)->build();
             $stream = $responser->getBody();
-            $stream->write((string)$response);
+            $stream->write((string) $response);
 
             $response = $responser->withBody($stream);
         }

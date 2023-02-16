@@ -8,6 +8,17 @@ namespace Framework\Mvc\Interfaces;
 interface IController
 {
     /**
+     * Применяет фильтры
+     *
+     * @param $action
+     * @param $isPre
+     * @param array $filters
+     * @param $data
+     * @return mixed
+     */
+    public function applyFilters($action, $isPre = true, array $filters = [], $data = null);
+
+    /**
      * Экшен
      *
      * @param string $name

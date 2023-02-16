@@ -49,6 +49,7 @@ final class Framework extends Kernel
     public function run(ServerRequestInterface $server)
     {
         $app = new MvcApplication($this->kernel);
-        $app->run($server);
+        $response = $app->run($server);
+        $app->send($response);
     }
 }

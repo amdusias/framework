@@ -9,6 +9,8 @@ use Framework\Mvc\Interfaces\IView;
  */
 abstract class View implements IView
 {
+    /** @var array $params параметры передаваемые в представление */
+    public array $params = [];
 
     /**
      * @result void

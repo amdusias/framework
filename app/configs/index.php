@@ -15,5 +15,9 @@ foreach (scandir(__DIR__ . '/components') AS $fileName) {
 return [
     'env' => $_ENV['APP_ENV'],
     'debug' => $_ENV['APP_DEBUG'],
+
+    'errorController' => '\App\Controllers\DefaultController',
+    'errorAction' => 'error',
+
     'components' => $components
 ];

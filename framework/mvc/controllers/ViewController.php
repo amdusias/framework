@@ -33,6 +33,13 @@ abstract class ViewController extends Controller
             }
         }
 
+        $filters = method_exists($this, 'filters') ? $this->filters() : [];
+        $result = $this->applyFilters($name, true, $filters, null);
+
+        if ($result instanceof ResponseInterface) {
+            return $result;
+        }
+
         if ($actionClass) {
             $cl = new $actionClass();
             $view = $cl->run();
@@ -53,6 +60,7 @@ abstract class ViewController extends Controller
         }
 
         $stream = $response->getBody();
+        $stream->write($this->applyFilters($name, false, $filters, $view));
 
         return $response->withBody($stream);
     }
