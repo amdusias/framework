@@ -132,7 +132,7 @@ class Kernel implements IKernel
      */
     public function getPublicDir(): string
     {
-        return $this->publicDir;
+        return $this->publicDir . '/public';
     }
 
     /**

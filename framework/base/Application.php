@@ -40,6 +40,8 @@ abstract class Application implements IApplication
     {
         $this->kernel->initialize($server);
 
+        FatalError::register();
+
         try {
             return $this->doRun();
         } catch (\Exception $e) {
