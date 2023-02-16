@@ -12,7 +12,7 @@ use Psr\Http\Message\ResponseInterface;
 abstract class ViewController extends Controller
 {
     /** @var string $layout шаблон */
-    public string $layout;
+    protected string $layout;
 
     /**
      * Экшен
