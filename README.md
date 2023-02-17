@@ -4,7 +4,8 @@
 
 # Документация:
 
-1. [Контроллеры, модели, представления](https://github.com/amdusias/framework/tree/main/docs/mvc)
+1. [Контроллеры, модели, представления, шаблоны, роуты](https://github.com/amdusias/framework/tree/main/docs/mvc)
+2. [Сессии](https://github.com/amdusias/framework/tree/main/docs/sessions)
 
 ## Структура папки app:
 

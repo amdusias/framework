@@ -1,6 +1,6 @@
 # Информация о роутах
 
-Все роуты находятся по пути <b>app/configs/components/routes.php</b>
+<p>Настройки компонента <b>routes</b>, роуты находятся по пути <b>app/config/components/router.php</b></p>
 
 ```php
 <?php

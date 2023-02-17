@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Components\Controller;
 use App\Components\View;
-use Framework\Web\Injectors\SessionInjector;
 
 /**
  * Class DefaultController
