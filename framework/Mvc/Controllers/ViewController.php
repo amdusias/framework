@@ -3,7 +3,7 @@
 namespace Framework\Mvc\Controllers;
 
 use Exception;
-use Framework\Web\ResponseInjector;
+use Framework\Web\Injectors\ResponseInjector;
 use Psr\Http\Message\ResponseInterface;
 
 /**

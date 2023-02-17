@@ -1,8 +1,9 @@
 <?php
 
-namespace Framework\Base;
+namespace Framework\Base\Injectors;
 
 use Exception;
+use Framework\Base\Injector;
 use Framework\Base\Interfaces\IKernel;
 
 /**

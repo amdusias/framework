@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Web;
+namespace Framework\Web\Injectors;
 
 use Exception;
 use Framework\Base\Injector;

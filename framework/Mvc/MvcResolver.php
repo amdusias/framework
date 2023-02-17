@@ -3,10 +3,10 @@
 namespace Framework\Mvc;
 
 use Exception;
-use Framework\Base\KernelInjector;
+use Framework\Base\Injectors\KernelInjector;
 use Framework\Mvc\Interfaces\IResolver;
-use Framework\Web\RequestInjector;
-use Framework\Web\RouterInjector;
+use Framework\Web\Injectors\RequestInjector;
+use Framework\Web\Injectors\RouterInjector;
 
 /**
  * Class MvcResolver

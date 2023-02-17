@@ -4,7 +4,7 @@ namespace Framework\Mvc\Views;
 
 use Exception;
 use Framework\Base\Autoload;
-use Framework\Base\KernelInjector;
+use Framework\Base\Injectors\KernelInjector;
 
 /**
  * Class PhpView

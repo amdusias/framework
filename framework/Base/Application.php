@@ -2,10 +2,11 @@
 
 namespace Framework\Base;
 
+use Framework\Base\Injectors\DispatcherInjector;
 use Framework\Base\Interfaces\IApplication;
 use Framework\Base\Interfaces\IKernel;
 use Framework\Mvc\Interfaces\IController;
-use Framework\Web\ResponseInjector;
+use Framework\Web\Injectors\ResponseInjector;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 

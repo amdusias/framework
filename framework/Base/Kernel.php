@@ -3,6 +3,7 @@
 namespace Framework\Base;
 
 use Exception;
+use Framework\Base\Injectors\DispatcherInjector;
 use Framework\Base\Interfaces\IKernel;
 use Psr\Http\Message\ServerRequestInterface;
 

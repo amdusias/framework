@@ -110,6 +110,7 @@ class Injector implements IInjector
         $options['calls'] = !empty($options['calls']) ? $this->buildCalls($options['calls']) : [];
 
         self::$injects[$name] = $this->makeObject($className, $options['arguments']);
+
         if (!self::$injects[$name]) {
             return false;
         }

@@ -5,8 +5,8 @@ namespace Framework\Mvc;
 use Framework\Base\Application;
 use Framework\Base\Injector;
 use Framework\Mvc\Interfaces\IResolver;
-use Framework\Web\RequestInjector;
-use Framework\Web\ResponseInjector;
+use Framework\Web\Injectors\RequestInjector;
+use Framework\Web\Injectors\ResponseInjector;
 use Psr\Http\Message\ResponseInterface;
 
 /**
