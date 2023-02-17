@@ -122,7 +122,7 @@ class Kernel implements IKernel
      */
     public function getConfigFile(): string
     {
-        return $this->getAppDir() . '/configs/index.php';
+        return $this->getPublicDir() . '/config/index.php';
     }
 
     /**
@@ -132,7 +132,7 @@ class Kernel implements IKernel
      */
     public function getPublicDir(): string
     {
-        return $this->publicDir . '/public';
+        return $this->publicDir;
     }
 
     /**

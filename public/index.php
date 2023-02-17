@@ -7,7 +7,7 @@ use Zend\Diactoros\ServerRequestFactory;
 
 include __DIR__ . '/../app/__autoload.php';
 
-$config = require_once __DIR__ . '/../app/configs/index.php';
+$config = require_once __DIR__ . '/../config/index.php';
 
 $request = ServerRequestFactory::fromGlobals($_SERVER, $_GET, $_POST, $_COOKIE, $_FILES);
 
