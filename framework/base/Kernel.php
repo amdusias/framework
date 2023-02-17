@@ -16,8 +16,8 @@ class Kernel implements IKernel
 
     /** @var string $appDir путь к папке приложения */
     protected $appDir;
-    /** @var string $publicDir путь к клиентской папке */
-    protected string $publicDir;
+    /** @var string $webDir путь к клиентской папке */
+    protected string $webDir;
     /** @var string режим разработки */
     private string $environment = 'dev';
     /** @var bool флаг дебага */
@@ -34,7 +34,7 @@ class Kernel implements IKernel
      */
     public function __construct(array $config)
     {
-        $this->publicDir = getenv('DOCUMENT_ROOT');
+        $this->webDir = getenv('DOCUMENT_ROOT');
         $this->debug = filter_var($config['debug'], FILTER_VALIDATE_BOOLEAN);
         $this->environment = $config['env'];
         $this->loaded = false;
@@ -122,17 +122,17 @@ class Kernel implements IKernel
      */
     public function getConfigFile(): string
     {
-        return $this->getPublicDir() . '/config/index.php';
+        return $this->getWebDir() . '/config/index.php';
     }
 
     /**
-     * Возвращает путь к клиентской папке
+     * Возвращает путь к корню приложения
      *
      * @return string
      */
-    public function getPublicDir(): string
+    public function getWebDir(): string
     {
-        return $this->publicDir;
+        return $this->webDir;
     }
 
     /**
@@ -143,5 +143,15 @@ class Kernel implements IKernel
     public function isDebug(): bool
     {
         return $this->debug;
+    }
+
+    /**
+     * Возвращает путь к папке ресурсов
+     *
+     * @return string
+     */
+    public function getResourcesDir(): string
+    {
+        return $this->getWebDir() . '/resources';
     }
 }

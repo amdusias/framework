@@ -46,7 +46,7 @@ class PhpView extends View
     {
         $layoutPath = null;
 
-        if ($this->layout && (!$layoutPath = $this->getLayoutFile((new KernelInjector)->build()->getAppDir()))
+        if ($this->layout && (!$layoutPath = $this->getLayoutFile((new KernelInjector)->build()->getResourcesDir()))
         ) {
             var_dump('не найден шаблон ' . $this->layout);
         }
@@ -109,7 +109,7 @@ class PhpView extends View
         $calledClass = $this->path;
 
         if (0 === strpos($calledClass, 'App')) {
-            $path = (new KernelInjector)->build()->getAppDir();
+            $path = (new KernelInjector)->build()->getResourcesDir();
         } else {
             $path = Autoload::getAlias('Micro');
         }
@@ -124,7 +124,7 @@ class PhpView extends View
         $path = str_replace('//', '/', $path);
 
         if (!file_exists($path)) {
-            throw new Exception('Предстваление `' . $path . '` не найдено');
+            throw new Exception('Представление `' . $path . '` не найдено');
         }
 
         return $path;

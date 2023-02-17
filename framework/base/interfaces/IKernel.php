@@ -26,7 +26,7 @@ interface IKernel
      *
      * @return string
      */
-    public function getPublicDir(): string;
+    public function getWebDir(): string;
 
     /**
      * Возвращает статус дебаг режима
@@ -34,4 +34,11 @@ interface IKernel
      * @return bool
      */
     public function isDebug(): bool;
+
+    /**
+     * Возвращает путь к папке ресурсов
+     *
+     * @return string
+     */
+    public function getResourcesDir(): string;
 }
