@@ -6,6 +6,7 @@
 
 1. [Контроллеры, модели, представления, шаблоны, роуты](https://github.com/amdusias/framework/tree/main/docs/mvc)
 2. [Сессии](https://github.com/amdusias/framework/tree/main/docs/sessions)
+3. [Куки](https://github.com/amdusias/framework/tree/main/docs/cookies)
 
 ## Структура папки app:
 

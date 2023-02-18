@@ -30,7 +30,7 @@ $session = (new SessionInjector())->build();
 
 if (isset($session->test))
 {
-    echo "Сессия {$test} существует";
+    echo "Сессия 'test' существует";
 }
 ```
 
