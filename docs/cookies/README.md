@@ -1,4 +1,4 @@
-# Сессии
+# Куки
 
 <p>Настройки компонента <b>cookie</b> находятся по пути <b>app/config/components/cookie.php</b></p>
 
