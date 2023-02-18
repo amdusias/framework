@@ -15,8 +15,10 @@
     "vlucas/phpdotenv": "^5.4"
   },
   "scripts": {
-    "post-autoload-dump": [
-      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+    "post-install-cmd": [
+      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+      "@php -r \"file_exists('.htaccess') || copy('.htaccess.example', '.htaccess');\"",
+      "@php -r \"file_exists('public/.htaccess') || copy('public/.htaccess.example', 'public/.htaccess');\""
     ]
   },
   "config": {
