@@ -71,7 +71,7 @@ class Injector implements IInjector
      * @return boolean|mixed
      * @throws \ReflectionException
      */
-    protected function get($name)
+    protected function get(string $name)
     {
         if (!empty(self::$config[$name])) {
             return self::$config[$name];
@@ -194,11 +194,11 @@ class Injector implements IInjector
     /**
      * Создает объект класса с аргументами
      *
-     * @param $className
+     * @param string $className
      * @param array $arguments
      * @return false|mixed|object|null
      */
-    private function makeObject($className, array $arguments = []): mixed
+    private function makeObject(string $className, array $arguments = []): mixed
     {
         try {
             $reflection = new \ReflectionClass($className);
@@ -210,7 +210,7 @@ class Injector implements IInjector
                 return $reflection->newInstanceArgs($arguments);
             }
         } catch (Exception $e) {
-            return false;
+            throw new Exception($e->getMessage());
         }
     }
 }
