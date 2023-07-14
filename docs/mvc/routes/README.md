@@ -32,6 +32,8 @@ return [
 
 ## Расшифровка
 ```
-/test - url адресной строки: /test
-/test/index - (test) - контроллер, (index) - экшен
+/test/index
+
+1. test - контроллер TestController
+2. index - метод контроллера actionIndex
 ```
